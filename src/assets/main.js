@@ -11,9 +11,9 @@ $(function() {
   			output += '<img src="'+ completedCourses[i].badge +'">';
   			output += '<a class="btn btn-primary" href="'+ completedCourses[i].url +'" target="_blank">See Course</a>'; 
   			output += '</div>'
-  			$('#badges').html(output);
   		}
+  		$('#badges').html(output);
   	}
-  });
+  }, "jsonp");
 
 });
