@@ -3,6 +3,7 @@ $(function() {
   // your code will go here
   $.ajax({
   	url: 'https://www.codeschool.com/users/dhirajshah.json',
+  	dataType: 'jsonp',
   	success: function(response){
   		var completedCourses = response.courses.completed;
   		for (var i=0, len=completedCourses.length; i < len; i++) {
@@ -14,6 +15,6 @@ $(function() {
   		}
   		$('#badges').html(output);
   	}
-  }, "jsonp");
+  });
 
 });
