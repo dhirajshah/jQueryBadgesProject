@@ -5,16 +5,33 @@ $(function() {
   	url: 'https://www.codeschool.com/users/dhirajshah.json',
   	dataType: 'jsonp',
   	success: function(response){
-  		var completedCourses = response.courses.completed;
-  		for (var i=0, len=completedCourses.length; i < len; i++) {
-  			var output = '<div class="course">';
-  			output += '<h3>' + completedCourses[i].title + '</h3>';
-  			output += '<img src="'+ completedCourses[i].badge +'">';
-  			output += '<a class="btn btn-primary" href="'+ completedCourses[i].url +'" target="_blank">See Course</a>'; 
-  			output += '</div>'
-  		}
-  		$('#badges').html(output);
+      showCourse(response.courses.completed);
   	}
   });
+
+  function showCourse(courses) {
+    var $badges = $('#badges');
+    courses.forEach(function(course){
+      var $course = $('<div />', {
+        'class' : 'course'
+      }).appendTo($badges);
+
+      $('<h3 />', {
+        'text' : course.title
+      }).appendTo($course);
+
+      $('<img />', {
+        'src' : course.badge
+      }).appendTo($course);
+
+      $('<a />',{
+        'href' : course.url,
+        'target': '_blank',
+        'text' : 'See Course',
+        'class' : 'btn btn-primary'
+      }).appendTo($course);
+        
+    });
+  }
 
 });
